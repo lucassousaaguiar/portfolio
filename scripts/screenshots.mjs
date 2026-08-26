@@ -56,8 +56,9 @@ async function shoot(url, out, viewport, before) {
   console.log('ok', path.relative(root, out))
 }
 
-// 1) Wireframes (arquivos locais)
-for (const [name] of pages) {
+// 1) Wireframes (arquivos locais) — inclui telas que ainda não existem no protótipo
+const wireframes = [...pages.map(([name]) => name), 'profile']
+for (const name of wireframes) {
   const file = path.join(root, 'docs', 'wireframes', 'src', `${name}.html`)
   const url = 'file:///' + file.replace(/\\/g, '/')
   await shoot(url, path.join(root, 'docs', 'wireframes', `${name}-desktop.png`), DESKTOP)

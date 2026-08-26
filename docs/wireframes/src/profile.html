@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wireframe — Seleção de perfil de acesso</title>
+<link rel="stylesheet" href="wireframe.css" />
+<style>
+  .overlay { position: absolute; inset: 0; background: rgba(60,60,60,0.55); display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .dialog { background: #fff; border: 2px solid #555; border-radius: 12px; width: min(760px, 100%); padding: 28px; position: relative; }
+  .dialog .h { font-size: 20px; }
+  .options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 18px 0; }
+  .opt { border: 2px solid #999; border-radius: 10px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; background: #fafafa; }
+  .opt.sel { border-color: #444; background: #eee; }
+  .opt .ic { width: 40px; height: 40px; border-radius: 8px; background: #bbb; flex-shrink: 0; }
+  .opt b { display: block; font-size: 14px; margin-bottom: 4px; }
+  .opt small { color: #666; font-size: 12px; line-height: 1.3; }
+  .dialog .actions { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+  .link { font-size: 13px; color: #555; text-decoration: underline; }
+  .badge { display: inline-block; border: 1px dashed #777; border-radius: 20px; padding: 6px 12px; font-size: 12px; font-family: monospace; }
+  @media (max-width: 500px) {
+    .options { grid-template-columns: 1fr; }
+    .dialog { padding: 18px; }
+    .dialog .actions { flex-direction: column; gap: 10px; align-items: stretch; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <span class="frame-label">05 · SELEÇÃO DE PERFIL DE ACESSO (1ª VISITA / TROCAR PERFIL)</span>
+  <div class="header">
+    <div class="logo"><div class="mark"></div><span class="name">Lucas Aguiar</span></div>
+    <div class="nav">
+      <a class="active">Sobre Mim</a><a>Projetos</a><a>Experiências</a><a>Contato</a>
+      <span class="badge">👤 Vendo como: —</span>
+      <span class="lang">PT / EN</span>
+    </div>
+    <div class="hamburger"></div>
+  </div>
+
+  <div class="main" style="min-height: 720px;">
+    <div class="hero">
+      <div>
+        <div class="text w40" style="height: 12px; background:#999;"></div>
+        <div class="title" style="width: 70%; height: 44px;"></div>
+        <p class="sub" style="margin-top: 48px;">Conteúdo da página ao fundo (Sobre Mim)</p>
+        <div class="text w90"></div><div class="text w80"></div><div class="text w60"></div>
+      </div>
+      <div class="avatar">FOTO</div>
+    </div>
+    <div class="grid4">
+      <div class="card"><div class="text w60"></div><div class="text w90"></div></div>
+      <div class="card"><div class="text w60"></div><div class="text w90"></div></div>
+      <div class="card"><div class="text w60"></div><div class="text w90"></div></div>
+      <div class="card"><div class="text w60"></div><div class="text w90"></div></div>
+    </div>
+  </div>
+
+  <div class="overlay">
+    <div class="dialog" role="dialog">
+      <div class="note" style="right: -8px; top: -40px;">Modal aparece só na 1ª visita ou ao clicar em "Vendo como" no cabeçalho</div>
+      <p class="h">Como você está acessando meu portfólio?</p>
+      <p class="sub" style="margin-bottom: 0;">Escolha um perfil para ver em destaque o que é mais relevante para você. Todo o conteúdo continua disponível.</p>
+
+      <div class="options">
+        <div class="opt"><div class="ic"></div><div><b>Recrutador / Empresa</b><small>Experiências, habilidades e contato rápido em evidência.</small></div></div>
+        <div class="opt"><div class="ic"></div><div><b>Professor / Avaliador</b><small>Formação, projetos acadêmicos e repositórios em evidência.</small></div></div>
+        <div class="opt"><div class="ic"></div><div><b>Desenvolvedor / Comunidade</b><small>Stack, GitHub e projetos com código aberto em evidência.</small></div></div>
+        <div class="opt sel"><div class="ic"></div><div><b>Visitante geral</b><small>Visão equilibrada do portfólio.</small></div></div>
+      </div>
+
+      <div class="actions">
+        <span class="link">Continuar sem escolher</span>
+        <span class="btn primary">Confirmar</span>
+      </div>
+      <div class="note" style="left: 24px; bottom: -34px;">Esc = continuar sem escolher · escolha salva no navegador (localStorage)</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© 2026 Lucas Aguiar</span>
+    <div class="icons"><span></span><span></span><span></span><span></span></div>
+    <span>Feito com React + Vite</span>
+  </div>
+</div>
+</body>
+</html>

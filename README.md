@@ -35,6 +35,8 @@ O sistema é um site de página única (SPA) com quatro seções acessadas por u
 | **Experiências** | `/experiencias` | Experiências profissionais, freelas, acadêmicas e eventos: instituição, cargo/atividade, período e descrição. |
 | **Contato** | `/contato` | Ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário (nome, e-mail, mensagem) com envio por e-mail. |
 
+**Perfis de acesso** (Sprint 02): ao entrar, o visitante informa quem é — *Recrutador/Empresa*, *Professor/Avaliador*, *Desenvolvedor/Comunidade* ou *Visitante geral* — e o portfólio adapta o **destaque** das informações (ordem, ênfase, chamadas para ação, canais de contato). Não há login e nenhum conteúdo é ocultado. Requisitos e casos de uso em [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md).
+
 Requisitos transversais: design responsivo, interface amigável, identidade visual coerente com o perfil profissional, hospedagem gratuita em nuvem e README completo.
 
 ## Status das sprints
@@ -46,12 +48,17 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 - [x] Navegação entre as seções (React Router) e layout principal (cabeçalho, rodapé e área de conteúdo)
 - [x] README com imagens dos protótipos, descrição, tecnologias previstas e estrutura inicial
 
-### ⏳ Lab01S02 — Funcionalidades principais
+### 🔄 Lab01S02 — Funcionalidades principais (em andamento)
 - [ ] Página "Sobre Mim" com versões PT/EN (base já implementada: troca de idioma global)
 - [ ] Página "Projetos" com timeline dinâmica (dados em `src/data/projects.ts`)
 - [ ] Página "Experiências" com dados organizados
 - [ ] Página "Contato" com ícones e formulário funcional (envio de e-mail)
 - [ ] Validações básicas e responsividade
+- **Nova tarefa — Perfis de acesso** (o visitante escolhe quem é — recrutador, professor, desenvolvedor — e o portfólio muda o *destaque* das informações, sem login e sem esconder conteúdo):
+  - [x] Levantamento de requisitos e casos de uso → [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md)
+  - [x] Wireframe da tela de seleção de perfil → [`docs/wireframes/profile-desktop.png`](docs/wireframes/profile-desktop.png)
+  - [ ] Validação dos requisitos com o PO
+  - [ ] Implementação (`ProfileContext`, `src/data/profiles.ts`, destaques nas 4 seções)
 
 ### ⏳ Lab01S03 — Hospedagem e finalização
 - [ ] Deploy na Vercel
@@ -98,6 +105,7 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 ```
 portfolio/
 ├── docs/
+│   ├── requisitos/         # levantamento de requisitos e casos de uso (perfis de acesso)
 │   ├── screenshots/        # capturas do protótipo (geradas por scripts/screenshots.mjs)
 │   └── wireframes/         # wireframes de média fidelidade (PNG) e suas fontes em HTML (src/)
 ├── public/
