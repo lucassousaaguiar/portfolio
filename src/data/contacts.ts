@@ -7,8 +7,8 @@ export interface ContactLink {
 
 export const contacts: ContactLink[] = [
   { id: 'email', label: 'E-mail', value: 'lucassousaaguiar@gmail.com', href: 'mailto:lucassousaaguiar@gmail.com' },
-  { id: 'whatsapp', label: 'WhatsApp', value: '+55 (31) 9 0000-0000', href: 'https://wa.me/5531900000000' },
-  { id: 'linkedin', label: 'LinkedIn', value: 'linkedin.com/in/lucassousaaguiar', href: 'https://www.linkedin.com/in/lucassousaaguiar' },
+  { id: 'whatsapp', label: 'WhatsApp', value: '+55 (37) 99155-4919', href: 'https://wa.me/5537991554919' },
+  { id: 'linkedin', label: 'LinkedIn', value: 'linkedin.com/in/lucas-aguiar-725487305', href: 'https://www.linkedin.com/in/lucas-aguiar-725487305/' },
   { id: 'github', label: 'GitHub', value: 'github.com/lucassousaaguiar', href: 'https://github.com/lucassousaaguiar' },
 ]
 
