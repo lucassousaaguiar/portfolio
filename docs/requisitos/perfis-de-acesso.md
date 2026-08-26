@@ -1,7 +1,7 @@
 # Perfis de Acesso — Levantamento de Requisitos e Casos de Uso
 
 > Lab01 · Sprint 02 · Portfólio Profissional — Lucas Aguiar
-> Versão 1.0 · 26/08/2026 · Status: **em validação** (implementação só após aprovação)
+> Versão 1.1 · 26/08/2026 · Status: **validado com o PO** (itens 1–4; item 5 pendente — ver seção 11)
 
 ---
 
@@ -72,10 +72,10 @@ O que muda em cada seção, por perfil. **Tudo continua visível em todos os per
 
 | ID | Requisito | Prioridade |
 |---|---|---|
-| **RF01** | O sistema deve exibir, na primeira visita, uma tela de seleção de perfil com as opções *Recrutador/Empresa*, *Professor/Avaliador*, *Desenvolvedor/Comunidade* e *Visitante geral*, cada uma com título, ícone e descrição curta. | Alta |
+| **RF01** | O sistema deve exibir, na primeira visita, uma **página de seleção de perfil** (rota `/perfil`, antes do site) com as opções *Recrutador/Empresa*, *Professor/Avaliador*, *Desenvolvedor/Comunidade* e *Visitante geral*, cada uma com título, ícone e descrição curta. | Alta |
 | **RF02** | O visitante deve poder **pular** a seleção; nesse caso o perfil `geral` é aplicado. | Alta |
 | **RF03** | O perfil escolhido deve ser **persistido no navegador** (localStorage) e a tela de seleção não deve ser exibida novamente enquanto houver perfil salvo. | Alta |
-| **RF04** | O cabeçalho deve exibir o perfil ativo e permitir **trocar de perfil** a qualquer momento, reabrindo a tela de seleção. | Alta |
+| **RF04** | O cabeçalho deve exibir o perfil ativo em texto ("Vendo como: Recrutador") e permitir **trocar de perfil** a qualquer momento, levando à página de seleção. | Alta |
 | **RF05** | A página *Sobre Mim* deve adaptar, conforme o perfil: frase de destaque do hero, CTA primário, ordem dos cards de informação e ordem das habilidades. | Alta |
 | **RF06** | A página *Projetos* deve manter a **ordem cronológica** da timeline e marcar visualmente como "Destaque" os projetos relevantes ao perfil. | Alta |
 | **RF07** | A página *Projetos* deve exibir, para perfis diferentes de `geral`, uma faixa "Destaques para você" com atalhos (âncoras) para os projetos destacados. | Média |
@@ -162,9 +162,9 @@ flowchart LR
 
 **Fluxo principal**
 1. O visitante acessa qualquer página do site.
-2. O sistema detecta que não há perfil salvo e exibe a tela de seleção sobre o conteúdo, com as 4 opções (título, ícone, descrição) no idioma ativo.
+2. O sistema detecta que não há perfil salvo e redireciona para a página de seleção (`/perfil`), com as 4 opções (título, ícone, descrição) no idioma ativo.
 3. O visitante escolhe uma opção.
-4. O sistema salva o perfil, fecha a tela e aplica os destaques na página atual (UC04).
+4. O sistema salva o perfil e redireciona para a página que o visitante tentou abrir (ou a home), já com os destaques aplicados (UC04).
 5. O cabeçalho passa a exibir o perfil ativo.
 
 **Fluxos alternativos**
@@ -205,8 +205,8 @@ flowchart LR
 
 **Fluxo principal**
 1. O visitante clica no indicador de perfil no cabeçalho (ex.: "Vendo como: Recrutador").
-2. O sistema reabre a tela de seleção com o perfil atual marcado.
-3. O visitante escolhe outro perfil (UC01, passo 3) ou fecha a tela mantendo o atual.
+2. O sistema abre a página de seleção com o perfil atual marcado.
+3. O visitante escolhe outro perfil (UC01, passo 3) ou volta mantendo o atual.
 4. O sistema atualiza os destaques da página imediatamente.
 
 **Fluxo alternativo**
@@ -331,10 +331,12 @@ Mobile: [`profile-mobile.png`](../wireframes/profile-mobile.png). Fonte: [`src/p
 
 ---
 
-## 11. Questões em aberto (para validação com o PO)
+## 11. Decisões de validação com o PO (26/08/2026)
 
-1. Os 4 perfis propostos atendem? Faltaria algum (ex.: *Cliente/Freelance*)?
-2. A tela de seleção deve ser um **modal sobre a home** (proposta) ou uma **página inicial separada** antes do site?
-3. O indicador no cabeçalho deve mostrar o nome do perfil ("Vendo como: Recrutador") ou apenas um ícone?
-4. Confirmar as tags de cada projeto/experiência (quais são `profissional`, `academico`, `open-source`).
-5. O assunto sugerido no formulário deve ser um campo visível "Assunto" (novo) ou só o texto inicial da mensagem?
+| # | Questão | Decisão |
+|---|---|---|
+| 1 | Os 4 perfis atendem? | **Sim** — Recrutador/Empresa, Professor/Avaliador, Desenvolvedor/Comunidade, Visitante geral. |
+| 2 | Modal sobre a home ou página separada? | **Página separada** (`/perfil`), exibida antes do site na 1ª visita e ao trocar de perfil. |
+| 3 | Indicador no cabeçalho | **Texto**: "Vendo como: *Perfil*". |
+| 4 | Tags dos projetos | **Confirmadas**: `academico` = Olimpíadas, Hotel Descanso Garantido, Portfólio; `profissional` + `freelance` = PublicaMED, add-on Blender; `open-source` = repositórios públicos. |
+| 5 | Assunto sugerido no formulário de contato | **Pendente** — opções: (a) novo campo "Assunto" pré-preenchido por perfil; (b) texto inicial na mensagem; (c) não sugerir. |
