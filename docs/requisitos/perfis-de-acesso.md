@@ -124,7 +124,7 @@ flowchart LR
   D(["Desenvolvedor / Comunidade"])
   O(["🛠 Proprietário (Lucas)"])
 
-  subgraph Portfólio — Perfis de Acesso
+  subgraph sistema["Portfólio — Perfis de Acesso"]
     UC01(["UC01 Selecionar perfil de acesso"])
     UC02(["UC02 Pular seleção"])
     UC03(["UC03 Trocar perfil"])

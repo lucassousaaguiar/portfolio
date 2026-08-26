@@ -100,7 +100,8 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 | `typescript` | ~6.0 | Compilador TypeScript |
 | `@types/react`, `@types/react-dom`, `@types/node` | — | Tipagens |
 | `oxlint` | ^1.79 | Linter |
-| `puppeteer-core` | — | Geração automática das capturas de tela do README (usa o Chrome instalado) |
+| `puppeteer-core` | — | Geração automática das capturas de tela do README e do PDF de requisitos (usa o Chrome instalado) |
+| `marked` | — | Conversão Markdown → HTML para o PDF de requisitos |
 
 ## Estrutura de diretórios
 
@@ -166,7 +167,7 @@ Protótipo navegável com o layout principal (cabeçalho fixo com menu, área de
 
 ## Perfis de acesso
 
-Funcionalidade da Sprint 02, especificada em [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md) (requisitos, regras de negócio e casos de uso) **antes** da implementação.
+Funcionalidade da Sprint 02, especificada em [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md) (requisitos, regras de negócio e casos de uso) **antes** da implementação. Versão em PDF: [`docs/requisitos/perfis-de-acesso.pdf`](docs/requisitos/perfis-de-acesso.pdf) (gerada com `npm run docs:pdf`).
 
 Na primeira visita o visitante passa pela página **`/perfil`** e escolhe quem é. O site então adapta **o destaque** das informações — nunca o conteúdo:
 
@@ -218,6 +219,7 @@ npm run build        # build de produção em dist/
 npm run preview      # serve o build em http://localhost:4173
 npm run lint         # lint com oxlint
 npm run screenshots  # regenera docs/wireframes/*.png e docs/screenshots/*.png (requer `npm run preview` ativo)
+npm run docs:pdf     # gera docs/requisitos/perfis-de-acesso.pdf a partir do markdown (com diagrama Mermaid)
 ```
 
 ## Decisões de design e arquitetura
