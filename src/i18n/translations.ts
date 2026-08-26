@@ -1,0 +1,96 @@
+export type Lang = 'pt' | 'en'
+
+export const translations = {
+  pt: {
+    nav: { about: 'Sobre Mim', projects: 'Projetos', experiences: 'Experiências', contact: 'Contato' },
+    header: { toggleMenu: 'Abrir menu', switchLang: 'Switch to English' },
+    footer: { rights: 'Todos os direitos reservados.', madeWith: 'Feito com React + Vite' },
+    about: {
+      greeting: 'Olá, eu sou',
+      role: 'Estudante de Engenharia de Software · PUC Minas',
+      intro:
+        'Sou estudante de Engenharia de Software na PUC Minas, com interesse em desenvolvimento web, automação e soluções que resolvam problemas reais. Este portfólio reúne minha trajetória, projetos e formas de contato.',
+      ctaProjects: 'Ver projetos',
+      ctaContact: 'Entrar em contato',
+      education: 'Formação',
+      educationText: 'Bacharelado em Engenharia de Software — PUC Minas (em andamento).',
+      area: 'Área de atuação',
+      areaText: 'Desenvolvimento web (React, Node.js), automação com Python e bancos de dados.',
+      interests: 'Interesses',
+      interestsText: 'Front-end moderno, arquitetura de software, integração de sistemas e boas práticas de engenharia.',
+      goals: 'Objetivos',
+      goalsText: 'Atuar como desenvolvedor full-stack, contribuindo com projetos de impacto e evoluindo continuamente.',
+      skills: 'Habilidades',
+    },
+    projects: {
+      title: 'Projetos',
+      subtitle: 'Linha do tempo dos meus projetos, do mais antigo ao mais recente.',
+      repo: 'Repositório',
+      preview: 'Imagem/GIF do projeto (Sprint 03)',
+    },
+    experiences: {
+      title: 'Experiências',
+      subtitle: 'Experiências profissionais, freelas, projetos e eventos técnicos.',
+      types: { job: 'Emprego', freelance: 'Freelance', academic: 'Acadêmico', event: 'Evento' },
+    },
+    contact: {
+      title: 'Contato',
+      subtitle: 'Fale comigo por qualquer um dos canais abaixo ou envie uma mensagem pelo formulário.',
+      name: 'Nome',
+      email: 'E-mail',
+      message: 'Mensagem',
+      send: 'Enviar mensagem',
+      namePlaceholder: 'Seu nome',
+      emailPlaceholder: 'voce@exemplo.com',
+      messagePlaceholder: 'Escreva sua mensagem...',
+      note: 'O envio por e-mail será implementado na Sprint 02.',
+    },
+  },
+  en: {
+    nav: { about: 'About Me', projects: 'Projects', experiences: 'Experience', contact: 'Contact' },
+    header: { toggleMenu: 'Open menu', switchLang: 'Mudar para Português' },
+    footer: { rights: 'All rights reserved.', madeWith: 'Built with React + Vite' },
+    about: {
+      greeting: "Hi, I'm",
+      role: 'Software Engineering Student · PUC Minas',
+      intro:
+        "I'm a Software Engineering student at PUC Minas, interested in web development, automation and solutions that solve real problems. This portfolio gathers my journey, projects and ways to get in touch.",
+      ctaProjects: 'See projects',
+      ctaContact: 'Get in touch',
+      education: 'Education',
+      educationText: 'B.Sc. in Software Engineering — PUC Minas (in progress).',
+      area: 'Field',
+      areaText: 'Web development (React, Node.js), Python automation and databases.',
+      interests: 'Interests',
+      interestsText: 'Modern front-end, software architecture, systems integration and engineering best practices.',
+      goals: 'Goals',
+      goalsText: 'Work as a full-stack developer, contributing to impactful projects and continuously improving.',
+      skills: 'Skills',
+    },
+    projects: {
+      title: 'Projects',
+      subtitle: 'Timeline of my projects, from oldest to newest.',
+      repo: 'Repository',
+      preview: 'Project image/GIF (Sprint 03)',
+    },
+    experiences: {
+      title: 'Experience',
+      subtitle: 'Professional experience, freelance work, projects and technical events.',
+      types: { job: 'Job', freelance: 'Freelance', academic: 'Academic', event: 'Event' },
+    },
+    contact: {
+      title: 'Contact',
+      subtitle: 'Reach me through any of the channels below or send a message using the form.',
+      name: 'Name',
+      email: 'E-mail',
+      message: 'Message',
+      send: 'Send message',
+      namePlaceholder: 'Your name',
+      emailPlaceholder: 'you@example.com',
+      messagePlaceholder: 'Write your message...',
+      note: 'E-mail sending will be implemented in Sprint 02.',
+    },
+  },
+} as const
+
+export type Translation = (typeof translations)['pt']
