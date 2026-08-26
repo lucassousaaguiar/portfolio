@@ -1,3 +1,5 @@
+import type { ContentTag } from './profiles'
+
 export interface Experience {
   id: string
   organization: string
@@ -5,6 +7,8 @@ export interface Experience {
   period: { pt: string; en: string }
   description: { pt: string; en: string }
   type: 'job' | 'freelance' | 'academic' | 'event'
+  /** Tags usadas pelos perfis de acesso para marcar destaques (RN05). */
+  tags: ContentTag[]
 }
 
 // Do mais recente ao mais antigo.
@@ -19,6 +23,7 @@ export const experiences: Experience[] = [
       en: "Development and maintenance of the company's internal management system: migration to React + Supabase, authentication, sales and finance modules and continuous deployment.",
     },
     type: 'freelance',
+    tags: ['profissional', 'freelance'],
   },
   {
     id: 'ortogonblender',
@@ -30,6 +35,7 @@ export const experiences: Experience[] = [
       en: 'Implementation of an add-on that automatically generates virtual surgical planning reports from the 3D scene.',
     },
     type: 'freelance',
+    tags: ['profissional', 'freelance'],
   },
   {
     id: 'puc-minas',
@@ -41,5 +47,6 @@ export const experiences: Experience[] = [
       en: 'Courses on algorithms, data structures, software engineering and development labs with hands-on team projects.',
     },
     type: 'academic',
+    tags: ['academico'],
   },
 ]

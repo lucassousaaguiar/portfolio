@@ -8,7 +8,8 @@
  *   npm run screenshots
  *
  * Usa o Chrome/Edge já instalado (puppeteer-core não baixa navegador).
- * Defina CHROME_PATH se o navegador estiver em outro caminho.
+ * Defina CHROME_PATH se o navegador estiver em outro caminho e
+ * PREVIEW_URL se o site não estiver em http://127.0.0.1:4173.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -35,11 +36,23 @@ if (!executablePath) {
 
 const DESKTOP = { width: 1280, height: 800 }
 const MOBILE = { width: 390, height: 844, isMobile: true, hasTouch: true }
-const pages = [
-  ['about', '/'],
-  ['projects', '/projetos'],
-  ['experiences', '/experiencias'],
-  ['contact', '/contato'],
+
+// Wireframes (docs/wireframes/src/<nome>.html)
+const wireframes = ['about', 'projects', 'experiences', 'contact', 'profile']
+
+// Protótipo: [nome, rota, mobile?]. `?perfil=` fixa o perfil de acesso da captura (RF12).
+const shots = [
+  ['profile', '/perfil', true],
+  ['about', '/?perfil=geral', true],
+  ['projects', '/projetos?perfil=geral', true],
+  ['experiences', '/experiencias?perfil=geral', true],
+  ['contact', '/contato?perfil=geral', true],
+  ['about-recrutador', '/?perfil=recrutador', false],
+  ['projects-recrutador', '/projetos?perfil=recrutador', false],
+  ['about-professor', '/?perfil=professor', false],
+  ['projects-professor', '/projetos?perfil=professor', false],
+  ['experiences-recrutador', '/experiencias?perfil=recrutador', false],
+  ['contact-dev', '/contato?perfil=dev', false],
 ]
 
 const browser = await puppeteer.launch({ executablePath, headless: true })
@@ -56,8 +69,7 @@ async function shoot(url, out, viewport, before) {
   console.log('ok', path.relative(root, out))
 }
 
-// 1) Wireframes (arquivos locais) — inclui telas que ainda não existem no protótipo
-const wireframes = [...pages.map(([name]) => name), 'profile']
+// 1) Wireframes (arquivos locais)
 for (const name of wireframes) {
   const file = path.join(root, 'docs', 'wireframes', 'src', `${name}.html`)
   const url = 'file:///' + file.replace(/\\/g, '/')
@@ -66,13 +78,13 @@ for (const name of wireframes) {
 }
 
 // 2) Protótipo (servidor de preview)
-for (const [name, route] of pages) {
+for (const [name, route, mobile] of shots) {
   await shoot(base + route, path.join(root, 'docs', 'screenshots', `${name}-desktop.png`), DESKTOP)
-  await shoot(base + route, path.join(root, 'docs', 'screenshots', `${name}-mobile.png`), MOBILE)
+  if (mobile) await shoot(base + route, path.join(root, 'docs', 'screenshots', `${name}-mobile.png`), MOBILE)
 }
 
 // 3) Menu mobile aberto
-await shoot(base + '/', path.join(root, 'docs', 'screenshots', 'menu-mobile.png'), MOBILE, async (page) => {
+await shoot(base + '/?perfil=geral', path.join(root, 'docs', 'screenshots', 'menu-mobile.png'), MOBILE, async (page) => {
   await page.click('.menu-btn')
   await new Promise((r) => setTimeout(r, 400))
 })

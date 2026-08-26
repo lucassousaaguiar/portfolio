@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
+import { useProfile } from '../i18n/ProfileContext'
 import { CloseIcon, MenuIcon } from './Icons'
 
 export default function Header() {
   const { t, lang, toggleLang } = useLanguage()
+  const { profile } = useProfile()
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
 
   const links = [
@@ -40,6 +43,21 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
+
+          {/* RF04 — indicador do perfil ativo; leva à página de seleção (UC03) */}
+          <Link
+            to="/perfil"
+            state={{ from: pathname }}
+            className="viewing-as"
+            title={t.profile.change}
+            onClick={() => setOpen(false)}
+          >
+            <span aria-hidden="true">{profile.icon}</span>
+            <span className="viewing-as__text">
+              {t.profile.viewingAs}: <strong>{profile.label[lang]}</strong>
+            </span>
+          </Link>
+
           <button type="button" className="lang-toggle" onClick={toggleLang} title={t.header.switchLang}>
             <span className={lang === 'pt' ? 'lang-toggle__on' : ''}>PT</span>
             <span className="lang-toggle__sep">/</span>

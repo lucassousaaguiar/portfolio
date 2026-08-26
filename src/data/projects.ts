@@ -1,15 +1,19 @@
+import type { ContentTag } from './profiles'
+
 export interface Project {
   id: string
   name: string
-  period: string // exibido na timeline (ex.: "2024")
+  period: string // exibido na timeline (ex.: "Jun 2024")
   date: string // ISO para ordenação
   description: { pt: string; en: string }
   technologies: string[]
   repo: string
+  /** Tags usadas pelos perfis de acesso para marcar destaques (RN05). */
+  tags: ContentTag[]
   image?: string // caminho para imagem/GIF (Sprint 03)
 }
 
-// Ordenado do mais antigo ao mais recente (a página também ordena por `date`).
+// A página ordena por `date` (do mais antigo ao mais recente — RN02).
 export const projects: Project[] = [
   {
     id: 'olimpiadas',
@@ -22,6 +26,7 @@ export const projects: Project[] = [
     },
     technologies: ['C', 'Structs', 'Arquivos'],
     repo: 'https://github.com/lucassousaaguiar/olimpiadas',
+    tags: ['academico', 'open-source'],
   },
   {
     id: 'hotel-descanso-garantido',
@@ -34,6 +39,7 @@ export const projects: Project[] = [
     },
     technologies: ['C', 'Structs', 'Arquivos', 'Ponteiros'],
     repo: 'https://github.com/lucassousaaguiar/Hotel-Descanso-Garantido-AEDsI',
+    tags: ['academico', 'open-source'],
   },
   {
     id: 'publicamed',
@@ -45,7 +51,8 @@ export const projects: Project[] = [
       en: 'Internal management panel (sales, clients, jobs and finance) migrated to a multi-user app with authentication and a central cloud database.',
     },
     technologies: ['React', 'Vite', 'Supabase', 'Cloudflare Pages'],
-    repo: 'https://github.com/lucassousaaguiar/publicamed',
+    repo: 'https://github.com/viniciusoramos/PublicaMED_Sistema',
+    tags: ['profissional', 'freelance'],
   },
   {
     id: 'addon-relatorios',
@@ -58,6 +65,7 @@ export const projects: Project[] = [
     },
     technologies: ['Python', 'Blender API', 'HTML/CSS'],
     repo: 'https://github.com/viniciusoramos/ADDON_RELATORIOS',
+    tags: ['profissional', 'freelance'],
   },
   {
     id: 'portfolio',
@@ -65,10 +73,11 @@ export const projects: Project[] = [
     period: 'Ago 2026',
     date: '2026-08-26',
     description: {
-      pt: 'Este site: portfólio bilíngue, responsivo, com timeline de projetos e formulário de contato, desenvolvido no Laboratório de Desenvolvimento de Software.',
-      en: 'This website: a bilingual, responsive portfolio with a project timeline and contact form, built for the Software Development Lab course.',
+      pt: 'Este site: portfólio bilíngue, responsivo, com timeline de projetos, perfis de acesso e formulário de contato, desenvolvido no Laboratório de Desenvolvimento de Software.',
+      en: 'This website: a bilingual, responsive portfolio with a project timeline, access profiles and contact form, built for the Software Development Lab course.',
     },
     technologies: ['React', 'TypeScript', 'Vite', 'React Router'],
     repo: 'https://github.com/lucassousaaguiar/portfolio',
+    tags: ['academico', 'open-source'],
   },
 ]

@@ -1,7 +1,7 @@
 # Perfis de Acesso — Levantamento de Requisitos e Casos de Uso
 
 > Lab01 · Sprint 02 · Portfólio Profissional — Lucas Aguiar
-> Versão 1.1 · 26/08/2026 · Status: **validado com o PO** (itens 1–4; item 5 pendente — ver seção 11)
+> Versão 1.2 · 26/08/2026 · Status: **validado com o PO** (decisões na seção 11) · Implementação: em andamento
 
 ---
 
@@ -80,7 +80,7 @@ O que muda em cada seção, por perfil. **Tudo continua visível em todos os per
 | **RF06** | A página *Projetos* deve manter a **ordem cronológica** da timeline e marcar visualmente como "Destaque" os projetos relevantes ao perfil. | Alta |
 | **RF07** | A página *Projetos* deve exibir, para perfis diferentes de `geral`, uma faixa "Destaques para você" com atalhos (âncoras) para os projetos destacados. | Média |
 | **RF08** | A página *Experiências* deve marcar visualmente as experiências relevantes ao perfil, mantendo a ordem. | Alta |
-| **RF09** | A página *Contato* deve reordenar os canais conforme o perfil e pré-preencher um assunto sugerido no formulário. | Média |
+| **RF09** | A página *Contato* deve reordenar os canais conforme o perfil e pré-preencher o campo **Assunto** do formulário com um assunto sugerido (editável). | Média |
 | **RF10** | **Todo o conteúdo deve permanecer visível e acessível em qualquer perfil**; perfis nunca ocultam informação. | Alta |
 | **RF11** | Os textos da tela de seleção e dos destaques devem respeitar o idioma ativo (PT/EN). | Alta |
 | **RF12** | O sistema deve aceitar o parâmetro de URL `?perfil=<id>` para pré-selecionar um perfil (ex.: link enviado a um recrutador), com precedência sobre o perfil salvo. | Média |
@@ -339,4 +339,4 @@ Mobile: [`profile-mobile.png`](../wireframes/profile-mobile.png). Fonte: [`src/p
 | 2 | Modal sobre a home ou página separada? | **Página separada** (`/perfil`), exibida antes do site na 1ª visita e ao trocar de perfil. |
 | 3 | Indicador no cabeçalho | **Texto**: "Vendo como: *Perfil*". |
 | 4 | Tags dos projetos | **Confirmadas**: `academico` = Olimpíadas, Hotel Descanso Garantido, Portfólio; `profissional` + `freelance` = PublicaMED, add-on Blender; `open-source` = repositórios públicos. |
-| 5 | Assunto sugerido no formulário de contato | **Pendente** — opções: (a) novo campo "Assunto" pré-preenchido por perfil; (b) texto inicial na mensagem; (c) não sugerir. |
+| 5 | Assunto sugerido no formulário de contato | **(a) Novo campo "Assunto"** pré-preenchido conforme o perfil e editável pelo visitante; vira o assunto do e-mail recebido. |

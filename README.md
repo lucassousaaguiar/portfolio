@@ -19,6 +19,7 @@ Website de portfólio profissional, **bilíngue (PT/EN)** e **responsivo**, que 
 - [Estrutura de diretórios](#estrutura-de-diretórios)
 - [Wireframes (média fidelidade)](#wireframes-média-fidelidade)
 - [Protótipo inicial do front-end](#protótipo-inicial-do-front-end)
+- [Perfis de acesso](#perfis-de-acesso)
 - [Instalação e execução local](#instalação-e-execução-local)
 - [Decisões de design e arquitetura](#decisões-de-design-e-arquitetura)
 
@@ -56,9 +57,9 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 - [ ] Validações básicas e responsividade
 - **Nova tarefa — Perfis de acesso** (o visitante escolhe quem é — recrutador, professor, desenvolvedor — e o portfólio muda o *destaque* das informações, sem login e sem esconder conteúdo):
   - [x] Levantamento de requisitos e casos de uso → [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md)
-  - [x] Wireframe da tela de seleção de perfil → [`docs/wireframes/profile-desktop.png`](docs/wireframes/profile-desktop.png)
-  - [ ] Validação dos requisitos com o PO
-  - [ ] Implementação (`ProfileContext`, `src/data/profiles.ts`, destaques nas 4 seções)
+  - [x] Wireframe da página de seleção de perfil → [`docs/wireframes/profile-desktop.png`](docs/wireframes/profile-desktop.png)
+  - [x] Validação dos requisitos com o PO (decisões registradas na seção 11 do documento)
+  - [x] Implementação (`ProfileContext`, `src/data/profiles.ts`, página `/perfil`, destaques nas 4 seções) — ver [Perfis de acesso](#perfis-de-acesso)
 
 ### ⏳ Lab01S03 — Hospedagem e finalização
 - [ ] Deploy na Vercel
@@ -75,6 +76,7 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 | Roteamento | **React Router 7** | Navegação entre as seções (SPA) |
 | Estilo | **CSS puro** com variáveis (design tokens) | Tema, responsividade (mobile-first via media queries) |
 | Internacionalização | Context API própria (`src/i18n`) | Troca PT/EN persistida em `localStorage` |
+| Perfis de acesso | Context API própria (`ProfileContext`) + dados declarativos | Destaques por perfil, persistidos em `localStorage`, sem back-end |
 | Fontes | Google Fonts (Inter, JetBrains Mono) | Identidade visual |
 | Lint | **oxlint** | Qualidade de código |
 | Envio de e-mail (previsto) | **EmailJS** ou **Formspree** | Formulário de contato sem back-end próprio |
@@ -114,9 +116,9 @@ portfolio/
 │   └── screenshots.mjs     # gera as imagens dos wireframes e do protótipo
 ├── src/
 │   ├── components/         # Layout, Header, Footer, PageHeader, Icons
-│   ├── data/               # conteúdo do portfólio: projects.ts, experiences.ts, contacts.ts
-│   ├── i18n/               # LanguageContext.tsx (PT/EN) e translations.ts
-│   ├── pages/              # About.tsx, Projects.tsx, Experiences.tsx, Contact.tsx
+│   ├── data/               # conteúdo: projects.ts, experiences.ts, contacts.ts, profiles.ts (perfis de acesso)
+│   ├── i18n/               # LanguageContext.tsx (PT/EN), translations.ts e ProfileContext.tsx (perfil ativo)
+│   ├── pages/              # About, Projects, Experiences, Contact e ProfileSelect (/perfil)
 │   ├── styles/global.css   # design tokens, layout, componentes e responsividade
 │   ├── App.tsx             # definição das rotas
 │   └── main.tsx            # ponto de entrada (Router + LanguageProvider)
@@ -161,6 +163,37 @@ Protótipo navegável com o layout principal (cabeçalho fixo com menu, área de
 | Sobre Mim | Menu aberto | Projetos | Contato |
 |---|---|---|---|
 | ![](docs/screenshots/about-mobile.png) | ![](docs/screenshots/menu-mobile.png) | ![](docs/screenshots/projects-mobile.png) | ![](docs/screenshots/contact-mobile.png) |
+
+## Perfis de acesso
+
+Funcionalidade da Sprint 02, especificada em [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md) (requisitos, regras de negócio e casos de uso) **antes** da implementação.
+
+Na primeira visita o visitante passa pela página **`/perfil`** e escolhe quem é. O site então adapta **o destaque** das informações — nunca o conteúdo:
+
+| Perfil | Em evidência |
+|---|---|
+| 💼 Recrutador / Empresa | Experiências profissionais, habilidades de mercado, CTA de contato, LinkedIn primeiro, assunto "Oportunidade de vaga" |
+| 🎓 Professor / Avaliador | Formação, projetos acadêmicos, fundamentos (C, Python, Git), GitHub, assunto "Avaliação do portfólio" |
+| 💻 Desenvolvedor / Comunidade | Stack, projetos com código aberto, CTA para o GitHub, assunto "Colaboração em projeto" |
+| 👤 Visitante geral | Layout padrão, sem marcações |
+
+Como funciona:
+- A escolha fica em `localStorage`; o cabeçalho mostra **"Vendo como: *Perfil*"** e leva de volta a `/perfil` para trocar.
+- `?perfil=recrutador` (ou `professor`, `dev`, `geral`) na URL pré-seleciona o perfil — útil para enviar um link direcionado.
+- A timeline de projetos continua sempre cronológica; os itens relevantes recebem a marcação **Destaque** e uma faixa "Destaques para você" com atalhos.
+- Tudo é declarativo: os perfis ficam em [`src/data/profiles.ts`](src/data/profiles.ts) e os projetos/experiências carregam `tags` (`academico`, `profissional`, `freelance`, `open-source`, `evento`).
+
+| Página de seleção (`/perfil`) | Sobre Mim — Recrutador |
+|---|---|
+| ![](docs/screenshots/profile-desktop.png) | ![](docs/screenshots/about-recrutador-desktop.png) |
+
+| Projetos — Professor | Contato — Desenvolvedor |
+|---|---|
+| ![](docs/screenshots/projects-professor-desktop.png) | ![](docs/screenshots/contact-dev-desktop.png) |
+
+| Projetos — Recrutador | Experiências — Recrutador |
+|---|---|
+| ![](docs/screenshots/projects-recrutador-desktop.png) | ![](docs/screenshots/experiences-recrutador-desktop.png) |
 
 ## Instalação e execução local
 
