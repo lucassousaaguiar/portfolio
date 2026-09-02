@@ -49,12 +49,12 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 - [x] Navegação entre as seções (React Router) e layout principal (cabeçalho, rodapé e área de conteúdo)
 - [x] README com imagens dos protótipos, descrição, tecnologias previstas e estrutura inicial
 
-### 🔄 Lab01S02 — Funcionalidades principais (em andamento)
-- [ ] Página "Sobre Mim" com versões PT/EN (base já implementada: troca de idioma global)
-- [ ] Página "Projetos" com timeline dinâmica (dados em `src/data/projects.ts`)
-- [ ] Página "Experiências" com dados organizados
-- [ ] Página "Contato" com ícones e formulário funcional (envio de e-mail)
-- [ ] Validações básicas e responsividade
+### ✅ Lab01S02 — Funcionalidades principais
+- [x] Página "Sobre Mim" com versões PT/EN (troca de idioma global, persistida no navegador)
+- [x] Página "Projetos" com timeline dinâmica (dados em `src/data/projects.ts`, ordenados por data)
+- [x] Página "Experiências" com dados organizados
+- [x] Página "Contato" com ícones e formulário funcional (envio de e-mail via Web3Forms)
+- [x] Validações básicas (obrigatórios, e-mail válido, tamanho mínimo, mensagens em PT/EN) e responsividade
 - **Nova tarefa — Perfis de acesso** (o visitante escolhe quem é — recrutador, professor, desenvolvedor — e o portfólio muda o *destaque* das informações, sem login e sem esconder conteúdo):
   - [x] Levantamento de requisitos e casos de uso → [`docs/requisitos/perfis-de-acesso.md`](docs/requisitos/perfis-de-acesso.md)
   - [x] Wireframe da página de seleção de perfil → [`docs/wireframes/profile-desktop.png`](docs/wireframes/profile-desktop.png)
@@ -79,7 +79,7 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 | Perfis de acesso | Context API própria (`ProfileContext`) + dados declarativos | Destaques por perfil, persistidos em `localStorage`, sem back-end |
 | Fontes | Google Fonts (Inter, JetBrains Mono) | Identidade visual |
 | Lint | **oxlint** | Qualidade de código |
-| Envio de e-mail (previsto) | **EmailJS** ou **Formspree** | Formulário de contato sem back-end próprio |
+| Envio de e-mail | **Web3Forms** | Formulário de contato sem back-end próprio (POST client-side, honeypot anti-spam) |
 | Hospedagem (prevista) | **Vercel** | Deploy contínuo a partir do GitHub, com preview por branch |
 
 ## Dependências
@@ -208,9 +208,15 @@ cd portfolio
 # 2. Instalar as dependências
 npm install
 
-# 3. Rodar em modo de desenvolvimento (http://localhost:5173)
+# 3. Configurar o envio do formulário de contato (opcional para navegar)
+#    Copie .env.example para .env.local e informe sua chave do Web3Forms
+cp .env.example .env.local
+
+# 4. Rodar em modo de desenvolvimento (http://localhost:5173)
 npm run dev
 ```
+
+> Sem a variável `VITE_WEB3FORMS_KEY`, o site funciona normalmente — apenas o envio do formulário fica indisponível. No deploy (Vercel), a mesma variável é configurada no painel do projeto.
 
 Outros comandos:
 
@@ -228,4 +234,4 @@ npm run docs:pdf     # gera docs/requisitos/perfis-de-acesso.pdf a partir do mar
 - **Conteúdo separado do código** (`src/data/`): adicionar um projeto ou experiência é editar um objeto — a timeline ordena automaticamente pela data.
 - **i18n própria via Context**: o requisito é apenas PT/EN, então um contexto simples com dicionário tipado evita uma dependência extra; a escolha fica salva no navegador.
 - **CSS puro com design tokens**: tema escuro com acento turquesa (`--accent`), tipografia Inter + JetBrains Mono. Sem framework de CSS para manter o bundle pequeno e o controle total da identidade visual.
-- **Sem back-end próprio**: o envio do formulário será feito por um serviço de e-mail (EmailJS/Formspree), o que permite hospedagem 100% estática e gratuita na Vercel.
+- **Sem back-end próprio**: o envio do formulário é feito pelo **Web3Forms** direto do front-end (a access key é própria para uso client-side), com honeypot anti-spam — o que permite hospedagem 100% estática e gratuita na Vercel.
