@@ -53,6 +53,7 @@ export const projects: Project[] = [
     technologies: ['React', 'Vite', 'Supabase', 'Cloudflare Pages'],
     repo: 'https://github.com/viniciusoramos/PublicaMED_Sistema',
     tags: ['profissional', 'freelance'],
+    image: '/projects/publicamed.png',
   },
   {
     id: 'addon-relatorios',
@@ -79,5 +80,6 @@ export const projects: Project[] = [
     technologies: ['React', 'TypeScript', 'Vite', 'React Router'],
     repo: 'https://github.com/lucassousaaguiar/portfolio',
     tags: ['academico', 'open-source'],
+    image: '/projects/portfolio.png',
   },
 ]
