@@ -116,39 +116,14 @@ O que muda em cada seção, por perfil. **Tudo continua visível em todos os per
 
 ### 6.1 Diagrama
 
-```mermaid
-flowchart LR
-  V(["👤 Visitante"])
-  R(["Recrutador / Empresa"])
-  P(["Professor / Avaliador"])
-  D(["Desenvolvedor / Comunidade"])
-  O(["🛠 Proprietário (Lucas)"])
+![Diagrama de casos de uso — Perfis de Acesso](diagrama-casos-de-uso.svg)
 
-  subgraph sistema["Portfólio — Perfis de Acesso"]
-    UC01(["UC01 Selecionar perfil de acesso"])
-    UC02(["UC02 Pular seleção"])
-    UC03(["UC03 Trocar perfil"])
-    UC04(["UC04 Visualizar portfólio com destaques"])
-    UC05(["UC05 Acessar por link com perfil pré-definido"])
-    UC06(["UC06 Configurar destaques de um perfil"])
-  end
+O ator **Visitante** é o ator geral ("pai"): os três atores abaixo dele são **especializações** (setas de generalização) e herdam todos os seus casos de uso — a diferença entre eles está no que o portfólio coloca em evidência para cada um:
 
-  R -.->|é um| V
-  P -.->|é um| V
-  D -.->|é um| V
-
-  V --> UC01
-  V --> UC02
-  V --> UC03
-  V --> UC04
-  V --> UC05
-  O --> UC06
-
-  UC01 -.->|«include»| UC04
-  UC02 -.->|«include»| UC04
-  UC03 -.->|«extend»| UC01
-  UC05 -.->|«include»| UC04
-```
+- **Recrutador / Empresa** — vê em destaque as experiências profissionais, as habilidades de mercado e o contato rápido (LinkedIn e e-mail primeiro).
+- **Professor / Avaliador** — vê em destaque a formação, os projetos acadêmicos e os repositórios de código.
+- **Desenvolvedor / Comunidade** — vê em destaque a stack técnica e os projetos de código aberto (GitHub primeiro).
+- Quem não se especializa segue como **Visitante geral** (perfil padrão), com a visão equilibrada e sem marcações.
 
 ### 6.2 UC01 — Selecionar perfil de acesso
 
