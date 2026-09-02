@@ -5,7 +5,7 @@
 
 Website de portfólio profissional, **bilíngue (PT/EN)** e **responsivo**, que apresenta minha trajetória, projetos, experiências e formas de contato.
 
-🔗 **Site publicado:** _em breve (Sprint 03)_
+🔗 **Site publicado:** https://portfolio-sable-one-20.vercel.app
 📦 **Repositório:** https://github.com/lucassousaaguiar/portfolio
 
 ---
@@ -61,11 +61,12 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
   - [x] Validação dos requisitos com o PO (decisões registradas na seção 11 do documento)
   - [x] Implementação (`ProfileContext`, `src/data/profiles.ts`, página `/perfil`, destaques nas 4 seções) — ver [Perfis de acesso](#perfis-de-acesso)
 
-### ⏳ Lab01S03 — Hospedagem e finalização
-- [ ] Deploy na Vercel
+### 🔄 Lab01S03 — Hospedagem e finalização (em andamento)
+- [x] Deploy na Vercel com integração contínua (push na `main` publica) → https://portfolio-sable-one-20.vercel.app
+- [x] Rewrite de SPA (`vercel.json`) e variável `VITE_WEB3FORMS_KEY` configurada no painel
 - [ ] Ajustes visuais e de usabilidade
-- [ ] Imagens/GIFs dos projetos em execução
-- [ ] README final com link do site publicado
+- [ ] Imagens/GIFs dos projetos em execução (feitos: PublicaMED e Portfólio; faltam: add-on Blender e projetos em C)
+- [x] README final com link do site publicado
 
 ## Tecnologias
 
@@ -80,7 +81,7 @@ Requisitos transversais: design responsivo, interface amigável, identidade visu
 | Fontes | Google Fonts (Inter, JetBrains Mono) | Identidade visual |
 | Lint | **oxlint** | Qualidade de código |
 | Envio de e-mail | **Web3Forms** | Formulário de contato sem back-end próprio (POST client-side, honeypot anti-spam) |
-| Hospedagem (prevista) | **Vercel** | Deploy contínuo a partir do GitHub, com preview por branch |
+| Hospedagem | **Vercel** | Deploy contínuo a partir do GitHub, com preview por branch → https://portfolio-sable-one-20.vercel.app |
 
 ## Dependências
 
